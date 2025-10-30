@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Comet Clock + To-Do</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-regular-straight/css/uicons-regular-straight.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-brands/css/uicons-brands.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css"
+    />
+    <link rel="stylesheet" href="Style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="Back-layer">
+      <!-- Clock -->
+      <div class="clock-container">
+        <div class="hours-minutes" id="time">00:00</div>
+        <h6 id="date"></h6>
+        <div id="dot1" class="dot"></div>
+        <div id="trailContainer"></div>
+      </div>
+
+      <!-- To-Do Widget -->
+      <div class="panel todo-panel" id="todoWidget">
+        <h2>To-Do</h2>
+        <input type="text" id="taskInput" placeholder="Add a task" />
+        <button onclick="addTask()">Add Task</button>
+        <ul class="list" id="taskList"></ul>
+      </div>
+      <div class="todo-toggle" id="todoToggle">☰</div>
+
+      <!--  Search Engine Selector -->
+      <div class="search-buttons">
+        <button
+          class="engine-btn active"
+          data-url="https://www.google.com/search?q="
+        >
+          Google
+        </button>
+        <button
+          class="engine-btn"
+          data-url="https://www.youtube.com/results?search_query="
+        >
+          YouTube
+        </button>
+        <button
+          class="engine-btn"
+          data-url="https://chrome.google.com/webstore/search/"
+        >
+          Chrome Webstore
+        </button>
+        <button
+          class="engine-btn"
+          data-url="https://music.youtube.com/search?q="
+        >
+          YTMusic
+        </button>
+      </div>
+
+      <!-- search bar -->
+      <form id="searchForm">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search"
+          id="search"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+        />
+      </form>
+
+      <div class="floating-box">
+        <a href="https://www.pinterest.com"
+          ><i class="fi fi-brands-pinterest"></i
+        ></a>
+        <a href="https://www.youtube.com"
+          ><i class="fi fi-brands-youtube"></i
+        ></a>
+        <a href="https://www.dropbox.com"
+          ><i class="fi fi-brands-dropbox"></i
+        ></a>
+        <a href="https://www.instagram.com"
+          ><i class="fi fi-brands-instagram"></i
+        ></a>
+        <a href="https://www.gmail.com"><i class="fi fi-rr-envelope"></i></a>
+      </div>
+
+      <button id="startTimer" title="Start timer">
+        <i class="fi fi-rr-play"></i>
+      </button>
+
+      <div id="timerCircle" aria-hidden="true">
+        <div id="timerText">00:00</div>
+        <div id="timerDot"></div>
+      </div>
+
+      <div class="quotecontainer">
+        <h4 id="quoteText"></h4>
+      </div>
+    </div>
+    <script src="Script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,338 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #111;
+  font-family: Arial, sans-serif;
+  color: #39ff14;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Back-layer {
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Clock */
+.clock-container {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #39ff14;
+  font-weight: bold;
+  font-size: 2.5em;
+  flex-direction: column;
+  z-index: 1;
+}
+.hours-minutes {
+  text-align: center;
+  z-index: 5;
+}
+.dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #45cc2d;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -6px 0 0 -6px;
+  box-shadow: 0 0 10px #45cc2d, 0 0 20px #45cc2d, 0 0 30px #45cc2d;
+}
+.trail {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+  opacity: 0.7;
+  filter: blur(4px);
+}
+
+/* Panels */
+.panel {
+  position: fixed;
+  top: 50px;
+  width: 250px;
+  background: #1a1a1a;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s ease;
+  z-index: 10;
+  opacity: 0;
+}
+.panel.show {
+  opacity: 1;
+}
+.panel h2 {
+  margin: 0;
+  font-size: 1.3em;
+  color: #00ff7f;
+  text-align: center;
+}
+.panel input[type="text"] {
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+  width: 100%;
+  font-size: 0.95em;
+  outline: none;
+  background: #222;
+  color: #fff;
+}
+.panel button {
+  padding: 6px 8px;
+  border: none;
+  border-radius: 6px;
+  background: #39ff14;
+  font-weight: bold;
+  cursor: pointer;
+  color: #000;
+  transition: 0.3s;
+  margin-left: 4px;
+}
+.panel button:hover {
+  background: #33e512;
+}
+
+#date {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  padding: 0;
+  margin: 0;
+  font-size: 20px;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.list li {
+  background: #222;
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  flex-wrap: wrap;
+}
+.list li.completed {
+  text-decoration: line-through;
+  color: #777;
+}
+.list li div {
+  display: flex;
+  gap: 4px;
+}
+
+/* Toggle Buttons */
+.todo-toggle {
+  position: fixed;
+  top: 50px;
+  width: 30px;
+  height: 60px;
+  background: #33e512;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #000;
+  font-weight: bold;
+  z-index: 15;
+  right: 0;
+  border-radius: 15px 0 0 15px;
+}
+.todo-panel {
+  right: -250px;
+}
+.todo-panel.show {
+  right: 55px;
+}
+
+#search {
+  background: rgba(0, 0, 0, 0.5);
+  width: 40%;
+  height: 25px;
+  color: #39ff14;
+  position: fixed;
+  top: 100px;
+  right: 28%;
+  border: 0.5px solid;
+  padding: 5px 10px;
+  border-radius: 30px;
+  transition: transform 1s ease, border-color 5s ease;
+}
+#search::placeholder {
+  color: #ffffff;
+  opacity: 0.7;
+}
+#search:hover {
+  border-color: #888;
+  transform: translateY(-5px);
+}
+
+#search:focus {
+  outline: none;
+  border-color: #39ff14;
+  background-color: #111;
+}
+
+.floating-box {
+  position: fixed;
+  bottom: 40px;
+  left: 30px;
+  width: 23px;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 0.5px solid #39ff14;
+  backdrop-filter: blur(70px);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.floating-box a {
+  color: #555;
+  text-decoration: none;
+  display: block;
+  margin: 8px 0;
+}
+a i {
+  font-size: 25px;
+  color: #39ff14;
+}
+
+/* ---- Timer UI ---- */
+/* start button (to left of the circle) */
+#startTimer {
+  position: fixed;
+  height: 50px;
+  width: 50px;
+  bottom: 42px;
+  right: 60px;
+  color: #111;
+  border: 1px solid #111;
+  padding: 2px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 200;
+  background: #33e512;
+}
+#startTimer:hover {
+  background: #111;
+  color: #33e512;
+  border: 1px solid #33e512;
+}
+
+/* circular timer */
+#timerCircle {
+  position: fixed;
+  bottom: 100px;
+  right: 35px;
+  width: 96px;
+  height: 96px;
+  border-radius: 35px;
+  border: 1px solid #39ff14;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #39ff14;
+  font-size: 14px;
+  font-weight: bold;
+  z-index: 200;
+  background: rgba(0, 0, 0, 0.5);
+  visibility: hidden; /* hidden until timer starts */
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+}
+
+/* visible state */
+#timerCircle.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#timerText {
+  z-index: 2;
+  pointer-events: none;
+}
+
+#timerDot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #45cc2d;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin: -5px 0 0 -5px;
+  box-shadow: 0 0 10px #45cc2d, 0 0 20px #45cc2d;
+  transform: translate(0, -38px);
+  transition: transform 0.2s linear;
+}
+.quotecontainer {
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #39ff14;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 8px;
+}
+/* --- Search Buttons --- */
+.search-buttons {
+  position: fixed;
+  top: 65px; /* just above search bar */
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+  z-index: 20;
+}
+.engine-btn {
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid #39ff14;
+  background: rgba(0, 0, 0, 0.5);
+  color: #39ff14;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+}
+.engine-btn:hover {
+  background: #39ff14;
+  color: #111;
+}
+.engine-btn.active {
+  background: #39ff14;
+  color: #111;
+}
