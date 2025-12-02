@@ -1,7 +1,8 @@
 #homepage
 
---> Made using : HTML CSS and JS
+## Made using : HTML CSS and JS
 
---> live at : https://homepage015.pages.dev/
+## Better version available at : https://github.com/vivekmorigan-lgtm/CustomHomepage2
 
-Made to replace the default homepage of chrome.
+## Made to replace the default homepage of chrome.
+
